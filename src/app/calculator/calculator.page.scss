@@ -1,0 +1,65 @@
+ion-content{
+    --background: black;
+}
+ion-header{
+    background: black;
+    color: #fff;
+}
+ion-header, ion-header>ion-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+ion-header::after{
+    display: none;
+}
+.calculator{
+    height: 100%;
+}
+.calculator_viewer{
+    // border: 1px solid red;
+    height: 40%; 
+}
+p{
+    text-overflow: ellipsis;
+    width: 100%;
+    word-wrap: break-word;
+    text-align: end;
+    margin: 0;
+}
+.viewer{
+    padding: 5px;
+    overflow-y: scroll;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    color: #fff;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 40pt;
+}
+.calculator_item{
+    height: 12%;
+}
+.calculator_item>ion-col{
+    // border: 1px solid black;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-self: center;
+}
+button{
+    width: 95%;
+    height: 100%;
+    font-size: 20pt;
+    color: #fff;
+    background: none;
+}
+button:focus{
+    outline: none;
+}
+button:active{
+    color: #d35400;
+}

@@ -1,92 +1,82 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.page.html',
-  styleUrls: ['./calculator.page.scss'],
+  styleUrls: ['./calculator.page.scss'], // './calculator.page.scss',
 })
 export class CalculatorPage implements OnInit {
+  Currents: any;
+  FlagNewNum: any;
+  PendingOp: any;
 
-  constructor() { }
-
-  ngOnInit() {
-    var viewer = document.getElementById('viewer'), // Поле вывода
-    equals = document.getElementById('equals'), // Равно (=)
-    numbs = document.getElementsByClassName('num'), //Список цифр (0 - 9)
-    ops = document.getElementsByClassName('ops'), // Список операторов
-    clearAll = document.getElementById('clear'),
-    theNum = "", // Текущая цифра
-    oldNum = "", // Предыдущая цифра 
-    resultNum: any, //Результат
-    operator: any;
-
-    // Если: Нажата кнопка. Получить значение этой кнопки
-    for(let i = 0; i < numbs.length; i++){
-      numbs[i].addEventListener('click', function(){
-        if(resultNum != ""){
-          theNum = this.getAttribute('data-num');
-          resultNum = "";
-        }else{
-          theNum += this.getAttribute('data-num');
-        }
-        viewer.innerHTML = theNum;
-      });
-    }
-
-    // Если: Нажат оператор. Отправить цифру в oldNum и сохранить оператор
-    for(let i = 0; i < ops.length; i++){
-      ops[i].addEventListener('click', function(){
-        oldNum = theNum;
-        theNum = "";
-        operator = this.getAttribute('data-ops');
-        equals.setAttribute('data-result', '');
-      });
-    }
-
-    // Если: Нажато равно. Подщитать результат
-    equals.addEventListener('click', function(){
-      // Конвертирование с строки в флоат
-      let TheoldNum = parseFloat(oldNum);
-      let ThetheNum = parseFloat(theNum);
-
-      // Выбор операции
-      switch(operator){
-        case "plus":
-          resultNum = TheoldNum + ThetheNum;
-          break;
-        case "minus": 
-          resultNum = TheoldNum - ThetheNum;
-          break;
-        case "times": 
-          resultNum = TheoldNum * ThetheNum;
-          break;
-        case "divided by": 
-          resultNum = TheoldNum / ThetheNum;
-          break;
-        // Если нажато равно без операции, вывести число и продолжить 
-        default:
-            resultNum = ThetheNum;
-      }
-      if(!isFinite(resultNum)){
-        if(isNaN(resultNum)){
-          resultNum = "you broke it!";
-        }else {
-          resultNum = "Look at what you've done"
-        }
-      }
-
-      // Вывод полученого
-      viewer.innerHTML = resultNum;
-      equals.setAttribute('data-result', resultNum);
-    });
-
-    // Если: Нажата кнопка очистить - очистить все
-    clearAll.addEventListener('click', function(){
-      oldNum = '';
-      theNum = '';
-      viewer.innerHTML = "0";
-      equals.setAttribute("data-result", resultNum);
-    });
+  constructor() { 
   }
 
+  ngOnInit() {
+    this.Currents = 0;
+    document.getElementById('viewer').innerText = this.Currents;
+    this.FlagNewNum = true;
+    this.PendingOp = "";
+  }
+  NumPressed(Num){
+
+    if(this.FlagNewNum){
+      document.getElementById('viewer').innerText = Num;
+      this.FlagNewNum = false;
+    }else{
+      if(document.getElementById('viewer').innerText == "0"){
+        document.getElementById('viewer').innerText = Num;
+      }else{
+        document.getElementById('viewer').innerText += Num;
+      }
+    }
+  }
+
+  Operation(Op){
+    let ReadOut = document.getElementById('viewer').innerText;
+    if(this.FlagNewNum && this.PendingOp != "="){
+      document.getElementById('viewer').innerText = this.Currents;
+    }else{
+      this.FlagNewNum = true;
+      if ('+' == this.PendingOp)
+        this.Currents += parseFloat(ReadOut);
+      else if ('-' == this.PendingOp)
+        this.Currents -= parseFloat(ReadOut);
+      else if ('*' == this.PendingOp)
+        this.Currents *= parseFloat(ReadOut);
+      else if ('/' == this.PendingOp)
+        this.Currents /= parseFloat(ReadOut);
+      else 
+        this.Currents = parseFloat(ReadOut);
+      
+      document.getElementById('viewer').innerText = this.Currents;
+      this.PendingOp = Op;
+    }
+  }
+
+  Decimal(){
+    let curReadOut = document.getElementById('viewer').innerText;
+    if (this.FlagNewNum){
+      curReadOut = "0.";
+      this.FlagNewNum = false;
+    } else {
+      if (curReadOut.indexOf(".") == -1)
+          curReadOut += ".";
+    }
+    document.getElementById('viewer').innerText = curReadOut;
+  }
+
+  ClearEntry(){
+    document.getElementById('viewer').innerText = "0";
+    this.FlagNewNum = true;
+  }
+
+  Clear(){
+    this.Currents = 0;
+    this.PendingOp = "";
+    this.ClearEntry();
+  }
 }

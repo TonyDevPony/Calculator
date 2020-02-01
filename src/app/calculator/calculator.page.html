@@ -6,72 +6,72 @@
   </ion-row>
 </ion-header>
 <ion-content>
-  <section id="calculator" class="calculator">
-    <ion-row class="calculator_viewer">
+  <form action="" name="calc">
+    <ion-row class="result">
       <ion-col>
-        <div class="viewer"><p id="viewer" >0</p></div>
+        <div class="viewer"><p id="viewer" ></p></div>
       </ion-col>
     </ion-row>
-    <ion-row class="calculator_item">
+    <ion-row class="calc_item">
       <ion-col>
-        <button id="button" data-ops="plus" class="ops">+</button>
+        <input name="btnPlus" type="Button" value="+" (click)="Operation('+')" />
       </ion-col>
-      <ion-col class="calculator_item">
-        <button data-ops="minus" class="ops">-</button>
+      <ion-col>
+        <input name="btnMinus" type="Button" value="-" (click)="Operation('-')" />
       </ion-col>
-      <ion-col class="calculator_item">
-        <button data-ops="times" class="ops">*</button>
+      <ion-col>
+        <input name="btnMultiply" type="Button" value="*" (click)="Operation('*')" />
       </ion-col>
-      <ion-col class="calculator_item">
-        <button data-ops="divided by" class="ops">/</button>
+      <ion-col>
+        <input name="btnDivide" type="Button" value=" / " (click)="Operation('/')" />
       </ion-col>
-      <ion-col class="calculator_item">
-        <button id="clear" class="clear">C</button>
+      <ion-col>
+        <input name="btnClear" type="Button" value="C" (click)="Clear()" />
       </ion-col>
     </ion-row>
-    <ion-row class="calculator_item">
+    <ion-row class="calc_item">
       <ion-col>
-        <button class="num" data-num="7">7</button>
+        <input name="btnSeven" type="Button" value="7" (click)="NumPressed(7)">
       </ion-col>
       <ion-col>
-        <button class="num" data-num="8">8</button>
+        <input name="btnEight" type="Button" value="8" (click)="NumPressed(8)">
       </ion-col>
       <ion-col>
-        <button class="num" data-num="9">9</button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="calculator_item">
-      <ion-col>
-        <button class="num" data-num="4">4</button>
-      </ion-col>
-      <ion-col>
-        <button class="num" data-num="5">5</button>
-      </ion-col>
-      <ion-col>
-        <button class="num" data-num="6">6</button>
+        <input name="btnNine" type="Button" value="9" (click)="NumPressed(9)">
       </ion-col>
     </ion-row>
-    <ion-row class="calculator_item">
+    <ion-row class="calc_item">
       <ion-col>
-        <button class="num" data-num="1">1</button>
+        <input name="btnFour" type="Button" value="4" (click)="NumPressed(4)">
       </ion-col>
       <ion-col>
-        <button class="num" data-num="2">2</button>
+        <input name="btnFive" type="Button" value="5" (click)="NumPressed(5)">
       </ion-col>
       <ion-col>
-        <button class="num" data-num="3">3</button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="calculator_item">
-      <ion-col>
-        <button class="num" data-num=".">.</button>
-      </ion-col>
-      <ion-col>
-        <button class="num" data-num="0">0</button>
-      </ion-col>
-      <ion-col>
-        <button id="equals" class="equals" data-result="">=</button>
+        <input name="btnSix" type="Button" value="6" (click)="NumPressed(6)">
       </ion-col>
     </ion-row>
-  </section>
+    <ion-row class="calc_item">
+      <ion-col>
+        <input name="btnOne" type="Button" value="1" (click)="NumPressed(1)">
+      </ion-col>
+      <ion-col>
+        <input name="btnTwo" type="Button" value="2" (click)="NumPressed(2)">
+      </ion-col>
+      <ion-col>
+        <input name="btnThree" type="Button" value="3" (click)="NumPressed(3)">
+      </ion-col>
+    </ion-row>
+    <ion-row class="calc_item">
+      <ion-col>
+        <input name="btnDecimal" type="Button" value="." (click)="Decimal()">
+      </ion-col>
+      <ion-col>
+        <input name="btnZero" type="Button" value="0" (click)="NumPressed(0)">
+      </ion-col>
+      <ion-col>
+        <input id="btnWide" name="btnEquals" type="Button" value="=" (click)="Operation('=')">
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

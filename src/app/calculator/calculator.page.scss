@@ -1,9 +1,9 @@
-ion-content{
-    --background: black;
-}
 ion-header{
     background: black;
     color: #fff;
+}
+ion-content{
+    --background: black;
 }
 ion-header, ion-header>ion-row{
     display: flex;
@@ -15,12 +15,36 @@ ion-header, ion-header>ion-row{
 ion-header::after{
     display: none;
 }
-.calculator{
+form{
+
     height: 100%;
 }
-.calculator_viewer{
-    // border: 1px solid red;
-    height: 40%; 
+ion-col{
+    //border: 1px solid black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+// #editWide{
+//     width: 100%;
+//     background: none;
+//     border: none;
+//     text-align: end;
+//     align-self: flex-end;
+//     font-size: 30pt;
+//     word-wrap: break-word;
+//     overflow-y: scroll;
+    
+// }
+.result{
+    height: 40%;
+}
+.result>ion-col{
+    align-items: flex-end;
+}
+.calc_item{
+    height: 12%;
 }
 p{
     text-overflow: ellipsis;
@@ -40,26 +64,17 @@ p{
     align-items: flex-end;
     font-size: 40pt;
 }
-.calculator_item{
-    height: 12%;
-}
-.calculator_item>ion-col{
-    // border: 1px solid black;
-    height: 100%;
-    display:flex;
-    justify-content: center;
-    align-self: center;
-}
-button{
-    width: 95%;
-    height: 100%;
-    font-size: 20pt;
-    color: #fff;
+input{
     background: none;
+    border: none;
+    font-size: 30pt;
+    color: #fff;
+    width: 90%;
+    height: 95%;
 }
-button:focus{
+input:focus{
     outline: none;
 }
-button:active{
+input:active{
     color: #d35400;
 }

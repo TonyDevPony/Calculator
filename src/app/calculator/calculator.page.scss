@@ -17,23 +17,11 @@ form{
     height: 100%;
 }
 ion-col{
-    //border: 1px solid black;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-// #editWide{
-//     width: 100%;
-//     background: none;
-//     border: none;
-//     text-align: end;
-//     align-self: flex-end;
-//     font-size: 30pt;
-//     word-wrap: break-word;
-//     overflow-y: scroll;
-    
-// }
 .result{
     height: 40%;
 }
@@ -103,7 +91,7 @@ input:active{
     display: block;
     position: absolute;
     top: 50%;
-    transition: 0.5s ease;
+    transition: 0.3s ease;
 }
 #bar1{
     transform: translateY(-8px);

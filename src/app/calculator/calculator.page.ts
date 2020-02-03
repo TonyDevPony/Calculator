@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { throwError } from 'rxjs';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Events } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class CalculatorPage implements OnInit {
   FlagNewNum: any;
   PendingOp: any;
 
-  constructor(private menu: MenuController) { 
+  constructor(private menu: MenuController, private events: Events) { 
   }
 
 
@@ -23,7 +23,14 @@ export class CalculatorPage implements OnInit {
     document.getElementById('viewer').innerText = this.Currents;
     this.FlagNewNum = true;
     this.PendingOp = "";
+    this.events.subscribe('menu:closed', () => {
+      document.getElementById('menu').classList.value = 'menu';
+    });
+    this.events.subscribe('menu:open', () => {
+      document.getElementById('menu').classList.value = 'menu open_menu';
+    });
   }
+  
 
   NumPressed(Num){
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { throwError } from 'rxjs';
+import { MenuController } from '@ionic/angular';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-calculator',
@@ -12,8 +14,9 @@ export class CalculatorPage implements OnInit {
   FlagNewNum: any;
   PendingOp: any;
 
-  constructor() { 
+  constructor(private menu: MenuController) { 
   }
+
 
   ngOnInit() {
     this.Currents = 0;
@@ -21,6 +24,7 @@ export class CalculatorPage implements OnInit {
     this.FlagNewNum = true;
     this.PendingOp = "";
   }
+
   NumPressed(Num){
 
     if(this.FlagNewNum){

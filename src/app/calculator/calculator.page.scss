@@ -6,9 +6,6 @@ ion-content{
     --background: black;
 }
 ion-header, ion-header>ion-row{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 70px;
 }
 
@@ -77,4 +74,49 @@ input:focus{
 }
 input:active{
     color: #d35400;
+}
+.menu_bar{
+    width: 70px;
+    height: 70px;
+   // border: 1px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+.menu{
+    width: 40%;
+    height: 70px;
+   // border: 1px solid #fff;
+    align-items: center;
+    display: block;
+    position: relative;
+}
+.menu>.bar{
+    background: #fff;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transition: 0.5s ease;
+}
+#bar1{
+    transform: translateY(-8px);
+}
+#bar3{
+    transform: translateY(8px);
+}
+.open_menu #bar1,.open_menu #bar3{
+    width: 50%;
+}
+.open_menu #bar1{
+    transform: translateY(-4px) translateX(-2px) rotate(-45deg);
+}
+.open_menu #bar3{
+    transform:translateY(4px) translateX(-2px) rotate(45deg);
 }

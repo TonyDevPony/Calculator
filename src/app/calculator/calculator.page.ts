@@ -9,6 +9,7 @@ import { AppComponent } from '../app.component';
   templateUrl: './calculator.page.html',
   styleUrls: ['./calculator.page.scss'], // './calculator.page.scss',
 })
+
 export class CalculatorPage implements OnInit {
   Currents: any;
   FlagNewNum: any;
@@ -33,7 +34,6 @@ export class CalculatorPage implements OnInit {
   
 
   NumPressed(Num){
-
     if(this.FlagNewNum){
       document.getElementById('viewer').innerText = Num;
       this.FlagNewNum = false;

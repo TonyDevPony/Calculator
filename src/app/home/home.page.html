@@ -1,14 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+  <ion-row>
+    <div class="menu_bar" (click)="this.menu.open()">
+      <div id="menu" class="menu">
+        <div id="bar1" class="bar"></div>
+        <div id="bar2" class="bar"></div>
+        <div id="bar3" class="bar"></div>
+      </div>
+    </div>
+    <ion-col class="ion-text-center">
+      <h2>Subscribe</h2>
+    </ion-col>
+  </ion-row>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <button type="button" (click)="pay();">Оплатить</button>
+
 </ion-content>

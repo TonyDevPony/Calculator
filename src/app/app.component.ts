@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform, Events } from '@ionic/angular';
+import { Platform, Events, NavController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private screenOrientation: ScreenOrientation,
+    private nav: NavController,
     private menu: MenuController,
     private events: Events
   ) {
@@ -32,6 +34,14 @@ export class AppComponent {
     if(this.platform.is('android')){
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
     }
+  }
+  goSubscribe(){
+    this.nav.navigateRoot('/home');
+    this.menu.close();
+  }
+  goCalculator(){
+    this.nav.navigateRoot('/calculator');
+    this.menu.close();
   }
   MenuDidClose(){
     this.events.publish('menu:closed', ''); 

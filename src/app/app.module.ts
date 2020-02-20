@@ -10,11 +10,20 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    HttpClientModule,
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,

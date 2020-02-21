@@ -11,6 +11,7 @@ export class HomePage implements OnInit {
   data: any;
   constructor(private menu: MenuController, private http: HTTP, private events: Events) {}
   ngOnInit(){
+    this.menu.enable(true);
     this.events.subscribe('menu:closed', () => {
       document.getElementById('menu').classList.value = 'menu';
     });

@@ -20,6 +20,7 @@ export class CalculatorPage implements OnInit {
 
 
   ngOnInit() {
+    this.menu.enable(true);
     this.Currents = 0;
     document.getElementById('viewer').innerText = this.Currents;
     this.FlagNewNum = true;

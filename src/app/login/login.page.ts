@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { HTTP } from '@ionic-native/http/ngx';
 
 
 @Component({
@@ -11,22 +12,23 @@ export class LoginPage implements OnInit {
 
   username: string = '';
   password: string = '';
+  data: any;
 
-  constructor(private menu: MenuController) { }
+  constructor(private menu: MenuController, private http: HTTP) { }
 
   ngOnInit() {
     this.menu.enable(false);
   }
 
-  async login(){
+  login(){
     const {username, password} = this;
-    try{
-      
-    }catch(err){
+    this.data = {name: username, pass: password};
+    try {
+      this.http.post('http://wayforpaytest.had.su/test/login.php', this.data, {}).then(data => {
+      console.log(data);
+      });
+    } catch(err){
       console.dir(err);
-      if(err.code === "auth/user-not-found"){
-        console.log('User not found');
-      }
     }
   }
 

@@ -5,7 +5,7 @@ import { ASTWithSource } from '@angular/compiler';
 import { MenuController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HTTP } from '@ionic-native/http/ngx';
-import { HttpClient,  } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders,  } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -19,20 +19,28 @@ export class RegisterPage implements OnInit {
   cpassword: string = "";
   data: any;
 
-  constructor (private menu: MenuController, private router: Router, private http: HttpClient) { }
+  constructor (private menu: MenuController, private router: Router, private http: HTTP) { }
 
   ngOnInit() {
     this.menu.enable(false);
   }
 
-  async register(){
+  register() {
     const { username, password, cpassword } = this;
-    this.data = {name: username, pass: password};
-    this.http.post("http://wayforpaytest.had.su/test/test.php", this.data).subscribe((Response) => {
-      console.log(Response);
-    });
-    
-
+    if (password !== cpassword) {
+      alert('Pass invalid');
+    } else {
+      this.data = {name: username, pass: password};
+      try {
+        this.http.post('http://wayforpaytest.had.su/test/register.php', this.data, {}).then(data => {
+        console.log(data);
+        });
+      } catch (err) {
+        console.dir(err);
+      }
+    }
   }
-
+  goLogin() {
+    this.router.navigateByUrl('/login');
+  }
 }

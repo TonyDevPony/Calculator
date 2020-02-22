@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { ASTWithSource } from '@angular/compiler';
+import { LoadingController } from '@ionic/angular';
 import { MenuController, NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HTTP } from '@ionic-native/http/ngx';
-import { HttpClient, HttpParams, HttpHeaders, } from '@angular/common/http';
+import { AuthServiceService } from '../auth.service/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +17,13 @@ export class RegisterPage implements OnInit {
   cpassword: string = "";
   data: any;
 
-  constructor(private menu: MenuController, private router: Router, private http: HTTP, public alertController: AlertController) { }
+  constructor(
+    private menu: MenuController, 
+    private router: Router,
+    private http: HTTP, 
+    public alertController: AlertController, 
+    private authservice: AuthServiceService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.menu.enable(false);
@@ -59,13 +63,25 @@ export class RegisterPage implements OnInit {
     } else {
       this.data = { name: username, pass: password };
       await this.http.post('http://wayforpaytest.had.su/test/register.php', this.data, {}).then(data => {
-        console.log(data);
+        this.authservice.setUser(data.data);
+        this.authservice.setUserId();
+        this.router.navigate(['home']);
         if (data.data === '0'){
           this.AlertErr('Этот пользователь уже зарегистрирован');
         }
       });
+      const loading = await this.loadingController.create({
+        message: 'Регистрация...',
+        duration: 2000
+      });
+      await loading.present();
+  
+      await loading.onDidDismiss();
+      this.router.navigate(['home']);
     }
   }
+
+
   goLogin() {
     this.router.navigateByUrl('/login');
   }

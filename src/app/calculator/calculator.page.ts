@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { throwError } from 'rxjs';
 import { MenuController, Events } from '@ionic/angular';
-import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calculator',
@@ -15,8 +13,11 @@ export class CalculatorPage implements OnInit {
   FlagNewNum: any;
   PendingOp: any;
 
-  constructor(private menu: MenuController, private events: Events) { 
-  }
+  constructor(
+    private menu: MenuController, 
+    private events: Events,
+    private router: Router, 
+  ) { }
 
 
   ngOnInit() {

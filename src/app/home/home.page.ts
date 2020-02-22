@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, Events } from '@ionic/angular';
-import { HTTP } from '@ionic-native/http/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,12 @@ import { HTTP } from '@ionic-native/http/ngx';
 })
 export class HomePage implements OnInit {
   data: any;
-  constructor(private menu: MenuController, private http: HTTP, private events: Events) {}
+  constructor(
+    private menu: MenuController, 
+    private router: Router, 
+    private events: Events,
+  ) {}
+
   ngOnInit(){
     this.menu.enable(true);
     this.events.subscribe('menu:closed', () => {

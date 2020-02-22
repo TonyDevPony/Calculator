@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { GuardService } from './guard.service/guard.service';
 
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: '', redirectTo: 'register', pathMatch: 'full' },
+  { path: 'home', 
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [GuardService]
+  },
   {
     path: 'calculator',
-    loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule)
+    loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule),
+    canActivate: [GuardService]
   },
   {
     path: 'login',
@@ -14,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
   },
 ];
 

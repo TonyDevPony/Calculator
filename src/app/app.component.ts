@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthServiceService } from './auth.service/auth-service.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AppComponent {
     private screenOrientation: ScreenOrientation,
     private nav: NavController,
     private menu: MenuController,
-    private events: Events
+    private events: Events,
+    private authservice: AuthServiceService
   ) {
     this.initializeApp();
   }
@@ -48,6 +50,10 @@ export class AppComponent {
   }
   MenuDidOpen(){
     this.events.publish('menu:open', '');
+  }
+  logout(){
+    this.authservice.logout();
+    this.menu.enable(false);
   }
   
 }

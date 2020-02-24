@@ -37,6 +37,7 @@ export class RegisterPage implements OnInit {
     });
 
     await alert.present();
+    return 0;
   }
 
   async register() {
@@ -44,41 +45,43 @@ export class RegisterPage implements OnInit {
     let errors = [];
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-    if (username === '' || password === '' || cpassword === '') {
-      this.AlertErr('<br/>Не все поля заполнены');
-      return 0;
-    }
-    if (password !== cpassword) {
-      errors.push('<br/>Пароли не совпадают');
-    }
-    if (reg.test(username) == false){
-      errors.push('<br/>Введите корректный email');
-    }
-    if (password.length < 4) {
-      errors.push('<br/>Пароль должен быть больше 4 символов');
-    }
-    if (errors.length != 0) {
-      this.AlertErr(errors);
-      return 0;
-    } else {
-      this.data = { name: username, pass: password };
-      await this.http.post('http://wayforpaytest.had.su/test/register.php', this.data, {}).then(data => {
-        this.authservice.setUser(data.data);
-        this.authservice.setUserId();
-        this.router.navigate(['home']);
-        if (data.data === '0'){
-          this.AlertErr('Этот пользователь уже зарегистрирован');
-        }
-      });
-      const loading = await this.loadingController.create({
-        message: 'Регистрация...',
-        duration: 2000
-      });
-      await loading.present();
-  
-      await loading.onDidDismiss();
-      this.router.navigate(['home']);
-    }
+
+    const loading = await this.loadingController.create({
+      message: 'Регистрация...',
+    });
+    await loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+      if (username === '' || password === '' || cpassword === '') {
+        this.AlertErr('<br/>Не все поля заполнены');
+        return 0;
+      }
+      if (password !== cpassword) {
+        errors.push('<br/>Пароли не совпадают');
+      }
+      if (reg.test(username) == false){
+        errors.push('<br/>Введите корректный email');
+      }
+      if (password.length < 4) {
+        errors.push('<br/>Пароль должен быть больше 4 символов');
+      }
+      if (errors.length != 0) {
+        this.AlertErr(errors);
+        return 0;
+      } else {
+        this.data = { name: username, pass: password };
+        this.http.post('http://wayforpaytest.had.su/test/register.php', this.data, {}).then(data => {
+          this.authservice.setUser(data.data);
+          this.authservice.setUserId();
+          this.router.navigate(['home']);
+          if (data.data === '0'){
+            this.AlertErr('Этот пользователь уже зарегистрирован');
+          }
+        });  
+      }
+
+    }, 1500);  
   }
 
 

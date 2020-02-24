@@ -43,28 +43,27 @@ export class LoginPage implements OnInit {
     const {username, password} = this;
     this.data = {name: username, pass: password};
 
-    this.http.post('http://wayforpaytest.had.su/test/login.php', this.data, {}).then(data => {
-      if(data.data != '0'){
-        this.authservice.setUser(data.data);
-        this.authservice.setUserId();
-        this.router.navigate(['home']);
-      } else{
-        this.AlertErr('Пользователь не зарегестрирван');
-      }
-    });
     const loading = await this.loadingController.create({
       message: 'Вход...',
-      duration: 2000
-    });
+    })
     await loading.present();
+    setTimeout(() => {
+      loading.dismiss();
 
-    await loading.onDidDismiss();
-    this.router.navigate(['home']);
+      this.http.post('http://wayforpaytest.had.su/test/login.php', this.data, {}).then(data => {
+        if(data.data != '0'){
+          this.authservice.setUser(data.data);
+          this.authservice.setUserId();
+          this.router.navigate(['home']);
+        } else{
+          this.AlertErr('Данные введены не верно, или пользователь не зарегестрирован');
+        }
+      });
+
+    }, 1500);
   }
 
   goRegister(){
     this.router.navigate(['register']);
   }
-
-
 }

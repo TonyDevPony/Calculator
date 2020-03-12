@@ -49,30 +49,18 @@ ion-header::after{
 .open_menu #bar3{
     transform:translateY(4px) translateX(-2px) rotate(45deg);
 }
-button[type="button"]{
-    text-decoration: none;
-    font-size: 14pt;
-    border: 1px solid black;
-    width: 200px;
-    height: 50px;
+ion-content{
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: 60px auto 0;
-    display: flex;
-    color: #fff;
-    border-radius: 50px;
-    background: black;
 }
-.conditions{
+.contact{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.contact>h4, .contact>p{
     text-align: center;
-    margin-top: 15px;
-}
-.contract{
-    text-decoration: underline;
-    color: blue;
-}
-ion-checkbox{
-    margin-right: 10px;
-    --background-checked: black;
-    --border-color-checked: black;
 }

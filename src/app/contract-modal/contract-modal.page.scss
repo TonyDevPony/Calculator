@@ -1,0 +1,31 @@
+ion-header>h2{
+    text-align: center;
+}
+ion-content{
+    --padding-start: 10px;
+    --padding-end: 3px;
+    --padding-bottom: 70px;
+}
+ion-content>h4{
+    text-align: center;
+}
+button{
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    margin: auto;
+    left: 0; bottom: 30px; right: 0;
+    color: #fff;
+    border-radius: 50px;
+    background: black;
+    font-size: 14pt;
+}
+ion-header{
+    height: 70px;
+}
+ion-header:after{
+    display: none;
+}

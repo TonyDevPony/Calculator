@@ -21,6 +21,14 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
   },
+  {
+    path: 'contract-modal',
+    loadChildren: () => import('./contract-modal/contract-modal.module').then( m => m.ContractModalPageModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule)
+  },
 ];
 
 @NgModule({

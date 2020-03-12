@@ -71,7 +71,7 @@ export class RegisterPage implements OnInit {
         return 0;
       } else {
         this.data = { name: username, pass: password };
-        this.http.post('http://wayforpaytest.had.su/test/register.php', this.data, {}).then(data => {
+        this.http.post('https://grekagreka25.had.su/test/register.php', this.data, {}).then(data => {
           this.authservice.setUser(data.data);
           this.authservice.setUserId();
           this.router.navigate(['home']);

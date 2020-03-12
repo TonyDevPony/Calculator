@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
     setTimeout(() => {
       loading.dismiss();
 
-      this.http.post('http://wayforpaytest.had.su/test/login.php', this.data, {}).then(data => {
+      this.http.post('https://grekagreka25.had.su/test/login.php', this.data, {}).then(data => {
         if(data.data != '0'){
           this.authservice.setUser(data.data);
           this.authservice.setUserId();

@@ -45,6 +45,10 @@ export class AppComponent {
     this.nav.navigateRoot('/calculator');
     this.menu.close();
   }
+  goContact(){
+    this.nav.navigateRoot('/contact');
+    this.menu.close();
+  }
   MenuDidClose(){
     this.events.publish('menu:closed', ''); 
   }

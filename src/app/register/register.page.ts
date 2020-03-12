@@ -81,7 +81,7 @@ export class RegisterPage implements OnInit {
         });  
       }
 
-    }, 1500);  
+    }, 2000);  
   }
 
 

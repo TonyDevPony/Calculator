@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, Events, ModalController, AlertController } from '@ionic/angular';
+import { MenuController, Events, ModalController, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ContractModalPage } from '../contract-modal/contract-modal.page';
 
@@ -12,11 +12,12 @@ export class HomePage implements OnInit {
   data: any;
   checkbox: boolean;
   constructor(
-    private menu: MenuController, 
-    private router: Router, 
+    private menu: MenuController,
+    private router: Router,
     private events: Events,
     public modalController: ModalController,
-    public alertController: AlertController             
+    public alertController: AlertController,
+    private nav: NavController
   ) {}
 
   ngOnInit(){
@@ -31,7 +32,7 @@ export class HomePage implements OnInit {
   async AlertErr(message: any) {
     const alert = await this.alertController.create({
       header: 'Ошибка',
-      message: message,
+      message,
       buttons: ['OK']
     });
 
@@ -51,5 +52,8 @@ export class HomePage implements OnInit {
     } else {
       this.AlertErr('Ознакомтесь с договором!!!');
     }
+  }
+  goContact() {
+    this.nav.navigateRoot('/contact');
   }
 }

@@ -1,6 +1,10 @@
 ion-header, ion-header>ion-row{
     height: 70px;
 }
+ion-content{
+    --padding-start: 10px;
+    --padding-end: 3px;
+}
 ion-header::after{
     display: none;
 }

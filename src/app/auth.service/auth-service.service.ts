@@ -11,29 +11,29 @@ import { NavController } from '@ionic/angular';
 export class AuthServiceService {
   
   private userId: null;
-  private userInfo: any; 
+  private userInfo: any;
 
   constructor(private nav: NavController) {
   }
 
-  setUser(userObj: string){
+  setUser(userObj: string) {
     this.userInfo = JSON.parse(userObj)
   }
 
-  getUser(){
+  getUser() {
     return this.userInfo;
   }
 
-  setUserId(){
+  setUserId() {
     const jsonUser = this.getUser();
     this.userId = jsonUser.id;
   }
 
-  getUserId(){
+  getUserId() {
     return this.userId;
   }
 
-  logout(){
+  logout() {
     this.userId = null;
     this.userInfo = '';
     this.nav.navigateRoot('/login');

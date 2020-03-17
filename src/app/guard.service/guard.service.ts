@@ -6,19 +6,17 @@ import { AuthServiceService } from '../auth.service/auth-service.service';
   providedIn: 'root'
 })
 export class GuardService implements CanActivate{
-
-  constructor( 
+  constructor(
     private authservice: AuthServiceService,
     private router: Router
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
-    if(!this.authservice.getUserId()){
+    if (!this.authservice.getUserId()) {
       this.router.navigate(['login']);
       return false;
     }
-
     return true;
   }
 

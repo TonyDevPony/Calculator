@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { GuardService } from './guard.service/guard.service';
+import { SubscribeService } from './subscribe.service/subscribe.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'register', pathMatch: 'full' },
-  { path: 'home', 
+  { path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate: [GuardService]
   },
   {
     path: 'calculator',
     loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule),
-    canActivate: [GuardService]
+    canActivate: [GuardService, SubscribeService]
   },
   {
     path: 'login',
@@ -23,11 +24,13 @@ const routes: Routes = [
   },
   {
     path: 'contract-modal',
-    loadChildren: () => import('./contract-modal/contract-modal.module').then( m => m.ContractModalPageModule)
+    loadChildren: () => import('./contract-modal/contract-modal.module').then( m => m.ContractModalPageModule),
+    canActivate: [GuardService]
   },
   {
     path: 'contact',
-    loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule)
+    loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule),
+    canActivate: [GuardService]
   },
 ];
 

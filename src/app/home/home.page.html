@@ -12,12 +12,11 @@
     </ion-col>
   </ion-row>
 </ion-header>
-
 <ion-content>
   <p>* Для использовния калькулятора оформите подписку</p>
   <p>* Подписка оформляеться путем оплаты услуги</p>
   <p>* Перед оформлением подписки, ознакомтесь с условиями <span class="contract" (click)="showModal()">Договора</span></p>
   <p>* Если возникли вопросы обратитесь в <span class="contract" (click)="goContact()">Поддержку</span></p>
-  <button type="button" (click)="pay(checkbox);">Оплатить</button>
+  <button type="button" (click)="pay(checkbox);">Перейти на страницу оплаты</button>
   <p class="conditions"><ion-checkbox [(ngModel)]="checkbox"></ion-checkbox>Я прочитал(а) условия <span class="contract" (click)="showModal()">Договора</span></p>
 </ion-content>

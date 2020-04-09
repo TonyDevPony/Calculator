@@ -80,3 +80,16 @@ ion-checkbox{
     --background-checked: black;
     --border-color-checked: black;
 }
+.payment{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.payment_system{
+    display: flex;
+    width: 70px; 
+    height: 70px;
+    //margin-left: 15px;
+}

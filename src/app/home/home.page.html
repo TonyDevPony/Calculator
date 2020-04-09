@@ -14,7 +14,11 @@
 </ion-header>
 <ion-content>
   <p>* Для использовния калькулятора оформите подписку</p>
-  <p>* Подписка оформляеться путем оплаты услуги</p>
+  <p>* Подписка оформляеться путем оплаты услуги </p> 
+  <p>Способы оплаты:</p>
+  <div class="payment">
+    <img class="payment_system" src="../../assets/img/homepage/mastercard.svg" alt=""> <img class="payment_system" src="../../assets/img/homepage/visa.svg" alt="">
+  </div>
   <p>* Перед оформлением подписки, ознакомтесь с условиями <span class="contract" (click)="showModal()">Договора</span></p>
   <p>* Если возникли вопросы обратитесь в <span class="contract" (click)="goContact()">Поддержку</span></p>
   <button type="button" (click)="pay(checkbox);">Перейти на страницу оплаты</button>
